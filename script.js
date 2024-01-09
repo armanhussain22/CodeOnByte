@@ -1,34 +1,31 @@
-const taskInput = document.getElementById('taskInput');
-const taskList = document.getElementById('taskList');
-const completedList = document.getElementById('completedList');
+const quoteElement = document.getElementById('quote');
+const userInput = document.getElementById('user-input');
+const timerElement = document.getElementById('timer');
 
-function addTask() {
-    const taskText = taskInput.value;
-    if (taskText.trim() === '') return;
+let startTime;
 
-    const li = document.createElement('li');
-    li.textContent = taskText;
+userInput.addEventListener('input', startTimer);
 
-    const completeButton = document.createElement('button');
-    completeButton.textContent = 'Complete';
-    completeButton.onclick = () => completeTask(li);
+function startTimer() {
+    if (!startTime) {
+        startTime = new Date().getTime();
+        setInterval(updateTimer, 1000);
+    }
 
-    li.appendChild(completeButton);
-    taskList.appendChild(li);
+    const typedText = userInput.value;
+    const originalText = quoteElement.innerText.trim();
 
-    taskInput.value = '';
+    if (typedText === originalText) {
+        const endTime = new Date().getTime();
+        const elapsedTime = (endTime - startTime) / 1000;
+        timerElement.innerText = `Time: ${elapsedTime.toFixed(2)}s`;
+    }
 }
 
-function completeTask(taskItem) {
-    taskList.removeChild(taskItem);
-    const completedTask = document.createElement('li');
-    completedTask.textContent = taskItem.textContent + ' - Completed on ' + getCurrentDateTime();
-    completedList.appendChild(completedTask);
-}
-
-function getCurrentDateTime() {
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
-    return `${date} at ${time}`;
+function updateTimer() {
+    if (startTime) {
+        const currentTime = new Date().getTime();
+        const elapsedTime = (currentTime - startTime) / 1000;
+        timerElement.innerText = `Time: ${elapsedTime.toFixed(2)}s`;
+    }
 }

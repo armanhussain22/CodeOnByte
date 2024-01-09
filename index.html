@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
-    <title>To-pDo App</title>
-</head>
+    <title>Typing Speed Test</title>
 <body>
-    <div class="container">
-        <h1>To-pDo App</h1>
-        <div>
-            <input type="text" id="taskInput" placeholder="What's Your Task">
-            <button onclick="addTask()">Add Task</button>
+    <div id="container">
+        <div id="text-to-type">
+            <p>Type the following text:</p>
+            <p id="quote">Programming is not about what you know; it's about what you can figure out.</p>
         </div>
-        <ul id="taskList"></ul>
-        <h2>Completed Tasks</h2>
-        <ul id="completedList"></ul>
+        <input type="text" id="user-input" placeholder="Start typing...">
+        <div id="timer">Time: 0s</div>
     </div>
 </body>
+</head>
 </html>
+
+
